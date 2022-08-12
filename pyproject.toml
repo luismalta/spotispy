@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "spotispy"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+spotipy = "^2.20.0"
+dagit = "^1.0.2"
+dagster = "^1.0.2"
+bottle = "^0.12.23"
+Flask = "^2.2.2"
+Flask-OAuthlib = "^0.9.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
