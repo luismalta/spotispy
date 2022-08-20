@@ -9,9 +9,7 @@ python = "^3.10"
 spotipy = "^2.20.0"
 dagit = "^1.0.2"
 dagster = "^1.0.2"
-bottle = "^0.12.23"
-Flask = "^2.2.2"
-Flask-OAuthlib = "^0.9.6"
+dagster-postgres = "^0.16.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
