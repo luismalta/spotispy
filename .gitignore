@@ -2,3 +2,5 @@
 .env
 **/__pycache__
 /dagster_home
+.cache
+firebase_account_key.json
