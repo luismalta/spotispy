@@ -1,6 +1,7 @@
 services:
   dagster-dagit:
     build: .
+    image: spotispy:latest
     ports:
       - 3000:3000
     environment:
@@ -9,6 +10,7 @@ services:
       SPOTIPY_REDIRECT_URI: ${SPOTIPY_REDIRECT_URI}
   dagster-daemon:
     build: .
+    image: spotispy:latest
     command: "dagster-daemon run"
     environment:
       SPOTIPY_CLIENT_ID: ${SPOTIPY_CLIENT_ID}
