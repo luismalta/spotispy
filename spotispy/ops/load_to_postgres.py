@@ -16,7 +16,8 @@ def connect_to_postgres_database():
     return con
 
 def connect_to_firebase():
-    cred = credentials.Certificate("firebase_account_key.json")
+    certificate_path = os.environ['FIREBASE_CERTIFICATE_PATH']
+    cred = credentials.Certificate(certificate_path)
     firebase_admin.initialize_app(cred)
     return firestore.client()
 
@@ -39,22 +40,26 @@ def get_last_playback_history_from_postgres():
         from 
             playback_history 
         order by 
-            playback_datetime 
+            playback_datetime desc
         limit 1;
     """
     cur.execute(query)
     last_history_date = cur.fetchone()
     connection.commit()
     connection.close()
+    print(last_history_date)
     if last_history_date:
+        print(last_history_date)
         return last_history_date[0]
 
 @op(out=DynamicOut())
 def get_history_from_firebase(last_history_date):
+    print(last_history_date)
     db = connect_to_firebase()
     playback_history_collection = db.collection('playback_history')
     if last_history_date:
-        last_history_date = last_history_date.timestamp()
+        last_history_date = last_history_date.timestamp() * 1000
+        print(last_history_date)
         historys = playback_history_collection.where('timestamp', '>', last_history_date).get()
     else:
         historys = playback_history_collection.get()
