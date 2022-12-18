@@ -1,32 +1,29 @@
 services:
-  dagster-dagit:
-    container_name: dagster-dagit
-    build: .
-    image: spotispy:latest
-    ports:
-      - 3000:3000
+  spotispy-dagster-repo:
+    build:
+      context: .
+    container_name: spotispy-dagster-repo
+    image: spotispy-dagster-repo
+    restart: always
     environment:
-      SPOTIPY_CLIENT_ID: ${SPOTIPY_CLIENT_ID}
-      SPOTIPY_CLIENT_SECRET: ${SPOTIPY_CLIENT_SECRET}
-      SPOTIPY_REDIRECT_URI: ${SPOTIPY_REDIRECT_URI}
-  dagster-daemon:
-    container_name: dagster-daemon
-    build: .
-    image: spotispy:latest
-    command: "dagster-daemon run"
-    environment:
-      SPOTIPY_CLIENT_ID: ${SPOTIPY_CLIENT_ID}
-      SPOTIPY_CLIENT_SECRET: ${SPOTIPY_CLIENT_SECRET}
-      SPOTIPY_REDIRECT_URI: ${SPOTIPY_REDIRECT_URI}
-  dagster-postgres:
-    container_name: dagster-postgres
-    image: postgres:13.3
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_PASSWORD=secret
-    volumes:
-      - dagster-postgres:/var/lib/postgresql/data
-volumes:
-  dagster-postgres:
-    driver: local
+        SPOTIPY_CLIENT_ID: ${SPOTIPY_CLIENT_ID}
+        SPOTIPY_CLIENT_SECRET: ${SPOTIPY_CLIENT_SECRET}
+        SPOTIPY_REDIRECT_URI: ${SPOTIPY_REDIRECT_URI}
+        SPOTIFY_CACHE: ${SPOTIFY_CACHE}
+
+        FIREBASE_CERTIFICATE_PATH: ${FIREBASE_CERTIFICATE_PATH}
+
+        POSTGRES_HOST: ${POSTGRES_HOST}
+        POSTGRES_DB: ${POSTGRES_DB}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+        DAGSTER_POSTGRES_DB: ${DAGSTER_POSTGRES_DB}
+        DAGSTER_POSTGRES_USER: ${DAGSTER_POSTGRES_USER}
+        DAGSTER_POSTGRES_PASSWORD: ${DAGSTER_POSTGRES_PASSWORD}
+    networks:
+      - dagster_workspace_network
+
+networks:
+  dagster_workspace_network:
+    external: true

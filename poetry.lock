@@ -643,7 +643,7 @@ python-versions = ">=3.7"
 name = "more-itertools"
 version = "8.14.0"
 description = "More routines for operating on iterables, beyond itertools"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -1165,7 +1165,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "aefff1845148012971d8bd838973735b4d19fc0bc1601f84b7a814dedc7a2b77"
+content-hash = "e941c92dfebfa3ed51ad9b0c380e930ec52ef466fdfee8d3ba4ac799d01398a5"
 
 [metadata.files]
 alembic = [
