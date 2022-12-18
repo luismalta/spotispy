@@ -21,8 +21,6 @@ class PostgresIOManager(IOManager):
     def upsert(self, table, data_dict):
         values = []
         for key, value in data_dict.items():
-            if table == 'albums':
-                print(value)
             value = str(value).replace("'", "''")
             values.append(f"'{value}'")
         values = ', '.join(values)
